@@ -222,7 +222,7 @@
 		height: 245px;
 		width: 260px;
 		padding: 0 20px;
-		background-color: #b0b0b0;
+		background-color: #8b8b8b;
 		float:left;
 
 		position: absolute;
@@ -236,7 +236,7 @@
 	div#screen:after
 	{
 		content: "";
-		border-top: 40px solid #b0b0b0;
+		border-top: 40px solid #8b8b8b;
 		border-left: 40px solid #c00d0d;
 		height: 0;
 
@@ -251,11 +251,14 @@
 		width: 254px;
 		margin-top: 20px;
 		margin-bottom: 9px;
-		background-color: #fff;
+		background-color: rgb(49, 49, 49);
 		border: 3px solid #494949;
 		clear: both;
 
 		border-radius: 15px;
+		display: flex;
+		
+		flex-direction: column;
 
 	}
 
@@ -814,4 +817,23 @@ li:hover{
 }
 ::-webkit-scrollbar-track{
 	background-color: #057b05;
+}
+.tipoIcon{
+	
+	margin-top: 5px;
+	margin-left: 5px;
+}
+div#picture p{
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-weight: 900;
+	margin-top: -5px;
+	color: #fff;
+}
+div#picture img{
+	position: absolute;
+	right: 35px;
+	width: 75%;
+	height: 70%;
 }
