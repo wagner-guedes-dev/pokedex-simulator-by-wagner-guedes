@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react'
-import axios from 'axios'
+import axios, { all } from 'axios'
 
 
 import './pokedex.css'
@@ -9,17 +9,18 @@ import { AiFillFire, AiFillBug } from 'react-icons/ai'
 import { FaRegDotCircle, FaDragon, FaGhost, FaWater } from 'react-icons/fa'
 import { MdDarkMode } from 'react-icons/md'
 import { GiElectric, GiFairyWand, GiPunch,GiFluffyWing, GiHighGrass, GiGroundbreaker, GiIceBolt, GiPoisonGas, GiPsychicWaves, GiFallingRocks,GiSteelClaws } from 'react-icons/gi'
+
+
 const Pokedex = () => {
 
   const [allPokemons, setAllPokemons] = useState([])
-  const [detailsPokemons, setDetailsPokemons] = useState()
+  const [oneGeracion, setOneGeracion] = useState([])
+  
+  const [detailsPokemons, setDetailsPokemons] = useState('')
   const [idPokemon, setIdPokemon] = useState(0)
   const [atributPokemonOne, setAtributPokemonOne] = useState('')
   const [atributPokemonTwo, setAtributPokemonTwo] = useState('')
-  const [test, setTest] = useState([])
-  const [nick, setNick] = useState()
-
-
+  
   const tipoPokemons = {
     bug: false, 
     dark: false, 
@@ -40,18 +41,28 @@ const Pokedex = () => {
     steel: false, 
     water: false
 }
+
   const [iconTipoPokemon, setIconTipoPokemon] = useState(tipoPokemons)
-  
+  const [ocultarAtributo, setOcultarAtributo] = useState(false)
 
   
   
 
   useEffect(()=>{
     
-    axios.get('https://pokeapi.co/api/v2/pokemon?limit=500&offset=0')
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
     .then((res)=>{
-      setAllPokemons(res.data.results)
-      setTest(res.data.results)
+      setAllPokemons(res.data.results)   
+      setOneGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+  useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setOneGeracion(res.data.results)
     }).catch((err)=>{
       console.log(err)
     })
@@ -60,9 +71,17 @@ const Pokedex = () => {
   useEffect(()=>{
    
       axios.get(`https://pokeapi.co/api/v2/pokemon/${1 + idPokemon}`).then((res)=> {
-        setDetailsPokemons(res.data.sprites.front_default)
+        if(ocultarAtributo){
+          setDetailsPokemons(res.data.sprites.front_default)
+
+        }else{
+          
+          setDetailsPokemons('')
+        }
+        
         setAtributPokemonOne(res.data.types[0].type.name)
         setAtributPokemonTwo('') //para pokemons que so tem um atributo
+        //se houver segundo atributo
         if(res.data.types.length === 2){
           setAtributPokemonTwo(res.data.types[1].type.name)
         }
@@ -86,19 +105,21 @@ const Pokedex = () => {
         iconTipoPokemon.steel = false
         iconTipoPokemon.water = false
         
-        
-        
-        
-        
-        
 
       })
       
+      
+  },[idPokemon, ocultarAtributo])
+  
 
-  },[idPokemon])
 
-  iconTipoPokemon[atributPokemonOne] = true
+
+  iconTipoPokemon[atributPokemonOne] = true // usando variavel como seleção do objeto
   iconTipoPokemon[atributPokemonTwo] = true
+ 
+  
+  
+  
         
 
   
@@ -107,14 +128,51 @@ const Pokedex = () => {
     setIdPokemon(key)
   }
 
-  // colocando icons na escrita do tipo dos pokemons
   
   
+  // Geração One
+  const geracaoOne = ()=>{
+    
+    for(let i = 151; i < 905; i++){
+      delete oneGeracion[i]
+    }
 
+  }
+  
+  const [nickPokemon, setNickPokemon] = useState('')
+
+  
+  
+  const [generation, setGeneration] = useState(0) //0 == todos || 1 == 1°geracao  || 2 == 2°geracao || 3 == 3° geracao ....
+  
 
   return (
     <div id="pokedex">
-      
+
+      <button onClick={()=> {
+        setGeneration(0)
+        //nao exibir imagemn do pokemon
+        setDetailsPokemons('')
+
+        // nao exibir atributo
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        }}>todos</button>
+
+      <button onClick={()=> {
+        geracaoOne()
+        setGeneration(1)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 1</button>
+
   <div id="left">
     <div id="logo"></div>
     <div id="bg_curve1_left"></div>
@@ -139,7 +197,8 @@ const Pokedex = () => {
         <div id="buttontopPicture2"></div>
       </div>
       <div id="picture">
-        <div className='tipoIcon'>
+        
+        {ocultarAtributo ? <div className='tipoIcon'>
           {iconTipoPokemon.fire ? (<AiFillFire color='red' size={20}/>) : null} {/* fire */ } 
           {iconTipoPokemon.normal ? (<FaRegDotCircle color='#D3D3D3' size={20}/>) : null}{/* normal */ } 
           {iconTipoPokemon.bug ? (<AiFillBug color='#208B20' size={20}/>) : null}{/* bug */ } 
@@ -158,11 +217,14 @@ const Pokedex = () => {
           {iconTipoPokemon.rock ? (<GiFallingRocks color='#556B2F' size={20}/>) : null} {/* rock */ } 
           {iconTipoPokemon.steel ? (<GiSteelClaws color='#708090' size={20}/>) : null}{/* steel */ }  
           {iconTipoPokemon.water ? (<FaWater color='#6495ED' size={20}/>) : null}{/* water */ }  
-        </div>
+        </div> : null}
         
-        <img src={detailsPokemons}  height="150"/> 
+
+        {detailsPokemons === '' ? <h4>Selecione um pokemon!</h4> : <img src={detailsPokemons}  height="150"/> }
         
         
+        
+        <p>{nickPokemon}</p>
        
         
       </div>
@@ -196,19 +258,37 @@ const Pokedex = () => {
   <div id="right">
     <div id="stats">
       <ul >
-        
-
-        {allPokemons.map((poke, key)=>{
+        {generation === 0 ? allPokemons.map((poke, key)=>{
           return(
             <li
              onClick={()=> {
               viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
             }}  
              key={key}>
               {key+1} - {poke.name}
             </li>
           )
-        })}
+        }) : null}
+
+        
+
+        {generation === 1 ? oneGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+        
 
       </ul>
     </div>

@@ -257,7 +257,7 @@
 
 		border-radius: 15px;
 		display: flex;
-		
+		gap: 130px;
 		flex-direction: column;
 
 	}
@@ -830,10 +830,23 @@ div#picture p{
 	font-weight: 900;
 	margin-top: -5px;
 	color: #fff;
+
 }
+div#picture p::first-letter {
+	text-transform: uppercase;
+  }
 div#picture img{
 	position: absolute;
 	right: 35px;
 	width: 75%;
 	height: 70%;
+}
+h4{
+	color: #fff;
+	display: block;
+	justify-content: center;
+	align-items: center;
+	margin-top: 75px;
+	width: 100%;
+	text-align: center;
 }
