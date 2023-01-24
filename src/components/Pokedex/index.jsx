@@ -15,6 +15,13 @@ const Pokedex = () => {
 
   const [allPokemons, setAllPokemons] = useState([])
   const [oneGeracion, setOneGeracion] = useState([])
+  const [twoGeracion, setTwoGeracion] = useState([])
+  const [threeGeracion, setThreeGeracion] = useState([])
+  const [fourGeracion, setFourGeracion] = useState([])
+  const [fiveGeracion, setFiveGeracion] = useState([])
+  const [sixGeracion, setSixGeracion] = useState([])
+  const [sevenGeracion, setSevenGeracion] = useState([])
+  const [eightGeracion, setEightGeracion] = useState([])
   
   const [detailsPokemons, setDetailsPokemons] = useState('')
   const [idPokemon, setIdPokemon] = useState(0)
@@ -47,17 +54,18 @@ const Pokedex = () => {
 
   
   
-
+//todos os pokemons
   useEffect(()=>{
     
     axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
     .then((res)=>{
       setAllPokemons(res.data.results)   
-      setOneGeracion(res.data.results)
     }).catch((err)=>{
       console.log(err)
     })
   },[])
+
+  //primeira geraçao de pokemons
   useEffect(()=>{
     
     axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
@@ -67,6 +75,88 @@ const Pokedex = () => {
       console.log(err)
     })
   },[])
+
+   //segunda geraçao de pokemons
+   useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setTwoGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+  //terceira geraçao de pokemons
+  useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setThreeGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+  //quarta geraçao de pokemons
+  useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setFourGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+  //quinta geraçao de pokemons
+  useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setFiveGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+   //sexta geraçao de pokemons
+   useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setSixGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+  //setima geraçao de pokemons
+  useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setSevenGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+  //oitava geraçao de pokemons
+  useEffect(()=>{
+    
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
+    .then((res)=>{
+      setEightGeracion(res.data.results)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+
+
+
+
 
   useEffect(()=>{
    
@@ -129,7 +219,7 @@ const Pokedex = () => {
   }
 
   
-  
+  //removendo pokemons da determinada geração
   // Geração One
   const geracaoOne = ()=>{
     
@@ -139,6 +229,91 @@ const Pokedex = () => {
 
   }
   
+  // Geração two
+  const geracaoTwo = ()=>{
+    
+    for(let i = 0; i < 151; i++){
+      delete twoGeracion[i]
+    }
+    for(let i = 251; i < 905; i++){
+      delete twoGeracion[i]
+    }
+    
+  }
+  
+    // Geração three
+    const geracaoThree = ()=>{
+    
+      for(let i = 0; i < 251; i++){
+        delete threeGeracion[i]
+      }
+      for(let i = 386; i < 905; i++){
+        delete threeGeracion[i]
+      }
+
+    }
+
+    // Geração four
+    const geracaoFour = ()=>{
+    
+      for(let i = 0; i < 386; i++){
+        delete fourGeracion[i]
+      }
+      for(let i = 493; i < 905; i++){
+        delete fourGeracion[i]
+      }
+      
+    }
+
+    // Geração five
+    const geracaoFive = ()=>{
+    
+      for(let i = 0; i < 493; i++){
+        delete fiveGeracion[i]
+      }
+      for(let i = 649; i < 905; i++){
+        delete fiveGeracion[i]
+      }
+
+    }
+
+    
+    // Geração six
+    const geracaoSix = ()=>{
+    
+      for(let i = 0; i < 649; i++){
+        delete sixGeracion[i]
+      }
+      for(let i = 721; i < 905; i++){
+        delete sixGeracion[i]
+      }
+
+    }
+
+    // Geração seven
+    const geracaoSeven = ()=>{
+    
+      for(let i = 0; i < 721; i++){
+        delete sevenGeracion[i]
+      }
+      for(let i = 809; i < 905; i++){
+        delete sevenGeracion[i]
+      }
+      
+    }
+
+    // Geração eight
+    const geracaoEight = ()=>{
+    
+      for(let i = 0; i < 809; i++){
+        delete eightGeracion[i]
+      }
+      
+    }
+
+
+
+
   const [nickPokemon, setNickPokemon] = useState('')
 
   
@@ -172,6 +347,90 @@ const Pokedex = () => {
         //ocultar nick
         setNickPokemon('')
       }}>geracao 1</button>
+
+      <button onClick={()=> {
+        geracaoTwo()
+        setGeneration(2)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 2</button>
+
+      <button onClick={()=> {
+        geracaoThree()
+        setGeneration(3)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 3</button>
+
+      <button onClick={()=> {
+        geracaoFour()
+        setGeneration(4)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 4</button>
+
+      <button onClick={()=> {
+        geracaoFive()
+        setGeneration(5)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 5</button>
+
+      <button onClick={()=> {
+        geracaoSix()
+        setGeneration(6)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 6</button>
+
+      <button onClick={()=> {
+        geracaoSeven()
+        setGeneration(7)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 7</button>
+
+      <button onClick={()=> {
+        geracaoEight()
+        setGeneration(8)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+      }}>geracao 8</button>
 
   <div id="left">
     <div id="logo"></div>
@@ -220,7 +479,7 @@ const Pokedex = () => {
         </div> : null}
         
 
-        {detailsPokemons === '' ? <h4>Selecione um pokemon!</h4> : <img src={detailsPokemons}  height="150"/> }
+        {detailsPokemons === '' ? <h4>Selecione um pokemon!</h4> : <img src={detailsPokemons}/> }
         
         
         
@@ -289,6 +548,112 @@ const Pokedex = () => {
           )
         }) : null }
         
+        {generation === 2 ? twoGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+        {generation === 3 ? threeGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+        {generation === 4 ? fourGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+        {generation === 5 ? fiveGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+        {generation === 6 ? sixGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+        {generation === 7 ? sevenGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+        {generation === 8 ? eightGeracion.map((poke, key)=>{
+          return(
+            <li onClick={()=> {
+              viewPokemon(key)
+              setOcultarAtributo(true)
+              setNickPokemon(poke.name)
+            }}  
+             key={key}
+             >
+              {key+1} - {poke.name}
+            </li>
+            
+          )
+        }) : null }
+
+
 
       </ul>
     </div>
