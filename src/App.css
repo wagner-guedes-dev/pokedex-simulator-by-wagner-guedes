@@ -12,3 +12,8 @@
     right: 0;
     z-index: 1;
 }
+@media(max-width: 1330px){
+    .App img{
+        object-fit: cover;
+    }
+}

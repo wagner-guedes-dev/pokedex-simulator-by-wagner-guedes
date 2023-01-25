@@ -24,7 +24,7 @@ const Pokedex = () => {
   const [eightGeracion, setEightGeracion] = useState([])
   
   const [detailsPokemons, setDetailsPokemons] = useState('')
-  const [idPokemon, setIdPokemon] = useState(0)
+  const [idPokemon, setIdPokemon] = useState(null)
   const [atributPokemonOne, setAtributPokemonOne] = useState('')
   const [atributPokemonTwo, setAtributPokemonTwo] = useState('')
   
@@ -216,32 +216,61 @@ const Pokedex = () => {
 
   const viewPokemon = (key)=>{
     setIdPokemon(key)
+
   }
 
   
   //removendo pokemons da determinada geração
   // Geração One
-  const geracaoOne = ()=>{
+  const changeGen1 = ()=>{
+    const geracaoOne = ()=>{
     
-    for(let i = 151; i < 905; i++){
-      delete oneGeracion[i]
+      for(let i = 151; i < 905; i++){
+        delete oneGeracion[i]
+      }
+  
     }
 
+    geracaoOne()
+    setGeneration(1)
+    setDetailsPokemons('')
+
+    //nao exibir imagemn do pokemon
+    setOcultarAtributo(false)
+
+    //ocultar nick
+    setNickPokemon('')
+    setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
   }
   
+
   // Geração two
+  const changeGen2 = ()=>{
+    
   const geracaoTwo = ()=>{
-    
-    for(let i = 0; i < 151; i++){
-      delete twoGeracion[i]
-    }
-    for(let i = 251; i < 905; i++){
-      delete twoGeracion[i]
-    }
-    
+
+  for(let i = 0; i < 151; i++){
+    delete twoGeracion[i]
+  }
+  for(let i = 251; i < 905; i++){
+    delete twoGeracion[i]
+  }
+}
+        geracaoTwo()
+        setGeneration(2)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
   }
   
-    // Geração three
+    const changeGen3 = ()=>{
+
+      // Geração three
     const geracaoThree = ()=>{
     
       for(let i = 0; i < 251; i++){
@@ -252,74 +281,176 @@ const Pokedex = () => {
       }
 
     }
+    
+      geracaoThree()
+        setGeneration(3)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
+    }
+    
 
     // Geração four
-    const geracaoFour = ()=>{
+    const changeGen4 = ()=>{
+
+      const geracaoFour = ()=>{
     
-      for(let i = 0; i < 386; i++){
-        delete fourGeracion[i]
+        for(let i = 0; i < 386; i++){
+          delete fourGeracion[i]
+        }
+        for(let i = 493; i < 905; i++){
+          delete fourGeracion[i]
+        }
+        
       }
-      for(let i = 493; i < 905; i++){
-        delete fourGeracion[i]
-      }
-      
+      geracaoFour()
+      setGeneration(4)
+      setDetailsPokemons('')
+
+      //nao exibir imagemn do pokemon
+      setOcultarAtributo(false)
+
+      //ocultar nick
+      setNickPokemon('')
+      setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
     }
+    
 
     // Geração five
-    const geracaoFive = ()=>{
-    
-      for(let i = 0; i < 493; i++){
-        delete fiveGeracion[i]
-      }
-      for(let i = 649; i < 905; i++){
-        delete fiveGeracion[i]
-      }
+    const changeGen5 = ()=>{
 
+      const geracaoFive = ()=>{
+    
+        for(let i = 0; i < 493; i++){
+          delete fiveGeracion[i]
+        }
+        for(let i = 649; i < 905; i++){
+          delete fiveGeracion[i]
+        }
+  
+      }
+      geracaoFive()
+        setGeneration(5)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
     }
+    
 
     
     // Geração six
-    const geracaoSix = ()=>{
-    
-      for(let i = 0; i < 649; i++){
-        delete sixGeracion[i]
-      }
-      for(let i = 721; i < 905; i++){
-        delete sixGeracion[i]
-      }
+    const changeGen6 = ()=>{
 
+      const geracaoSix = ()=>{
+    
+        for(let i = 0; i < 649; i++){
+          delete sixGeracion[i]
+        }
+        for(let i = 721; i < 905; i++){
+          delete sixGeracion[i]
+        }
+  
+      }
+      geracaoSix()
+      setGeneration(6)
+      setDetailsPokemons('')
+
+      //nao exibir imagemn do pokemon
+      setOcultarAtributo(false)
+
+      //ocultar nick
+      setNickPokemon('')
+      setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
     }
+    
 
     // Geração seven
-    const geracaoSeven = ()=>{
+    const changeGen7 = ()=>{
+      const geracaoSeven = ()=>{
     
-      for(let i = 0; i < 721; i++){
-        delete sevenGeracion[i]
+        for(let i = 0; i < 721; i++){
+          delete sevenGeracion[i]
+        }
+        for(let i = 809; i < 905; i++){
+          delete sevenGeracion[i]
+        }
+        
       }
-      for(let i = 809; i < 905; i++){
-        delete sevenGeracion[i]
-      }
-      
+
+      geracaoSeven()
+        setGeneration(7)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
     }
+    
 
     // Geração eight
-    const geracaoEight = ()=>{
-    
-      for(let i = 0; i < 809; i++){
-        delete eightGeracion[i]
-      }
-      
-    }
+    const changeGen8 = ()=>{
 
+      const geracaoEight = ()=>{
+        for(let i = 0; i < 809; i++){
+          delete eightGeracion[i]
+        }
+        
+      }
+  
+      geracaoEight()
+        setGeneration(8)
+        setDetailsPokemons('')
+
+        //nao exibir imagemn do pokemon
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
+    }
+    
 
 
 
   const [nickPokemon, setNickPokemon] = useState('')
-
+  
   
   
   const [generation, setGeneration] = useState(0) //0 == todos || 1 == 1°geracao  || 2 == 2°geracao || 3 == 3° geracao ....
+  const alteraGeracao = ()=>{
+    
+      changeGen1()
+    
+      changeGen2()
+    
+      changeGen3()
+    
+      changeGen4()
+    
+      changeGen5()
+    
+      changeGen6()
+    
+      changeGen7()
+    
+      changeGen8()
+
   
+  }
+ 
 
   return (
     <div id="pokedex">
@@ -334,104 +465,26 @@ const Pokedex = () => {
 
         //ocultar nick
         setNickPokemon('')
+        setIdPokemon(null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
         }}>todos</button>
 
-      <button onClick={()=> {
-        geracaoOne()
-        setGeneration(1)
-        setDetailsPokemons('')
+      <button onClick={changeGen1}>geracao 1</button>
 
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
+      <button onClick={changeGen2}>geracao 2</button>
 
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 1</button>
+      <button onClick={changeGen3}>geracao 3</button>
 
-      <button onClick={()=> {
-        geracaoTwo()
-        setGeneration(2)
-        setDetailsPokemons('')
+      <button onClick={changeGen4}>geracao 4</button>
 
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
+      <button onClick={changeGen5}>geracao 5</button>
 
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 2</button>
+      <button onClick={changeGen6}>geracao 6</button>
 
-      <button onClick={()=> {
-        geracaoThree()
-        setGeneration(3)
-        setDetailsPokemons('')
+      <button onClick={changeGen7}>geracao 7</button>
 
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
+      <button onClick={changeGen8}>geracao 8</button>
 
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 3</button>
-
-      <button onClick={()=> {
-        geracaoFour()
-        setGeneration(4)
-        setDetailsPokemons('')
-
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
-
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 4</button>
-
-      <button onClick={()=> {
-        geracaoFive()
-        setGeneration(5)
-        setDetailsPokemons('')
-
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
-
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 5</button>
-
-      <button onClick={()=> {
-        geracaoSix()
-        setGeneration(6)
-        setDetailsPokemons('')
-
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
-
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 6</button>
-
-      <button onClick={()=> {
-        geracaoSeven()
-        setGeneration(7)
-        setDetailsPokemons('')
-
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
-
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 7</button>
-
-      <button onClick={()=> {
-        geracaoEight()
-        setGeneration(8)
-        setDetailsPokemons('')
-
-        //nao exibir imagemn do pokemon
-        setOcultarAtributo(false)
-
-        //ocultar nick
-        setNickPokemon('')
-      }}>geracao 8</button>
-
+     
   <div id="left">
     <div id="logo"></div>
     <div id="bg_curve1_left"></div>
@@ -497,19 +550,59 @@ const Pokedex = () => {
     <div id="bigbluebutton"></div>
     
     <div id="cross">
-      <div id="leftcross">
+      <div id="leftcross" 
+        onClick={()=> {
+          alteraGeracao()
+          if(generation === 0){
+            setGeneration(8)
+          }else{
+            setGeneration(generation - 1) 
+          }
+          setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
+         }}
+         >
         <div id="leftT"></div>
       </div>
-      <div id="topcross">
+      <div id="topcross"
+        onClick={()=>{
+          if(idPokemon != null){
+            if(idPokemon > 0){
+              setIdPokemon(idPokemon - 1)
+              setNickPokemon(allPokemons[idPokemon - 1].name)
+            }
+          }
+          
+          
+        }}
+        >
         <div id="upT"></div>
       </div>
-      <div id="rightcross">
+      <div id="rightcross" 
+      
+     
+     onClick={()=> {
+      alteraGeracao()
+        if(generation === 8){
+          setGeneration(1)
+        }else{
+          setGeneration(generation + 1)
+        }
+        setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
+       }}
+       >
         <div id="rightT"></div>
       </div>
       <div id="midcross">
         <div id="midCircle"></div>
       </div>
-      <div id="botcross">
+      <div id="botcross"
+      onClick={()=>{
+        if(idPokemon != null){
+          setIdPokemon(idPokemon + 1)
+          setNickPokemon(allPokemons[idPokemon + 1].name)
+        }
+      }}
+      >
         <div id="downT"></div>
       </div>
     </div>
@@ -518,15 +611,19 @@ const Pokedex = () => {
     <div id="stats">
       <ul >
         {generation === 0 ? allPokemons.map((poke, key)=>{
+          
           return(
-            <li
-             onClick={()=> {
+            <li 
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
+              
             }}  
              key={key}>
               {key+1} - {poke.name}
+
             </li>
           )
         }) : null}
@@ -535,7 +632,9 @@ const Pokedex = () => {
 
         {generation === 1 ? oneGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -550,7 +649,9 @@ const Pokedex = () => {
         
         {generation === 2 ? twoGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -565,7 +666,9 @@ const Pokedex = () => {
 
         {generation === 3 ? threeGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li 
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -580,7 +683,9 @@ const Pokedex = () => {
 
         {generation === 4 ? fourGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li 
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -595,7 +700,9 @@ const Pokedex = () => {
 
         {generation === 5 ? fiveGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li 
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -610,7 +717,9 @@ const Pokedex = () => {
 
         {generation === 6 ? sixGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li 
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -625,7 +734,9 @@ const Pokedex = () => {
 
         {generation === 7 ? sevenGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li
+              className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
@@ -640,7 +751,9 @@ const Pokedex = () => {
 
         {generation === 8 ? eightGeracion.map((poke, key)=>{
           return(
-            <li onClick={()=> {
+            <li
+            className={idPokemon === key ? 'selected' : null}
+              onClick={()=> {
               viewPokemon(key)
               setOcultarAtributo(true)
               setNickPokemon(poke.name)
