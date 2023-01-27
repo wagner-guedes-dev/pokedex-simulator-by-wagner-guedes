@@ -451,39 +451,20 @@ const Pokedex = () => {
   
   }
  
+  const [selectedTop, setSelectedTop] = useState(false)
+  const [selectedDown, setSelectedDown] = useState(false)
+  const [selectedLeft, setSelectedLeft] = useState(false)
+  const [selectedRight, setSelectedRight] = useState(false)
 
+  const [alert, setAlert] = useState(false)
+
+  
+  
+ 
   return (
     <div id="pokedex">
 
-      <button onClick={()=> {
-        setGeneration(0)
-        //nao exibir imagemn do pokemon
-        setDetailsPokemons('')
-
-        // nao exibir atributo
-        setOcultarAtributo(false)
-
-        //ocultar nick
-        setNickPokemon('')
-        setIdPokemon(null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
-        }}>todos</button>
-
-      <button onClick={changeGen1}>geracao 1</button>
-
-      <button onClick={changeGen2}>geracao 2</button>
-
-      <button onClick={changeGen3}>geracao 3</button>
-
-      <button onClick={changeGen4}>geracao 4</button>
-
-      <button onClick={changeGen5}>geracao 5</button>
-
-      <button onClick={changeGen6}>geracao 6</button>
-
-      <button onClick={changeGen7}>geracao 7</button>
-
-      <button onClick={changeGen8}>geracao 8</button>
-
+     
      
   <div id="left">
     <div id="logo"></div>
@@ -532,7 +513,7 @@ const Pokedex = () => {
         </div> : null}
         
 
-        {detailsPokemons === '' ? <h4>Selecione um pokemon!</h4> : <img src={detailsPokemons}/> }
+        {detailsPokemons === '' ? <h4 className={alert ? 'vibrate-1' : null}>Selecione um pokemon!</h4> : <img src={detailsPokemons} /> }
         
         
         
@@ -550,8 +531,9 @@ const Pokedex = () => {
     <div id="bigbluebutton"></div>
     
     <div id="cross">
-      <div id="leftcross" 
+      <div id="leftcross" className={selectedLeft ? 'button-selected': null}
         onClick={()=> {
+          setSelectedLeft(true)
           alteraGeracao()
           if(generation === 0){
             setGeneration(8)
@@ -559,28 +541,41 @@ const Pokedex = () => {
             setGeneration(generation - 1) 
           }
           setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
-         }}
+          setTimeout(()=>{
+            setSelectedLeft(false)
+          },30)
+        }}
+        onMouseDown={()=>{setSelectedLeft(true)}}
          >
         <div id="leftT"></div>
       </div>
       <div id="topcross"
+        className={selectedTop ? 'button-selected': null}
         onClick={()=>{
+          setSelectedTop(true)
           if(idPokemon != null){
             if(idPokemon > 0){
               setIdPokemon(idPokemon - 1)
               setNickPokemon(allPokemons[idPokemon - 1].name)
             }
+          }else{
+            setAlert(true)
           }
-          
-          
+          setTimeout(()=>{
+            setSelectedTop(false)
+          },30)
+          setTimeout(()=>{
+            setAlert(false)
+          },100)
         }}
+        onMouseDown={()=>{setSelectedTop(true)}}
         >
         <div id="upT"></div>
       </div>
       <div id="rightcross" 
-      
-     
+      className={selectedRight ? 'button-selected': null}
      onClick={()=> {
+      setSelectedRight(true)
       alteraGeracao()
         if(generation === 8){
           setGeneration(1)
@@ -588,7 +583,11 @@ const Pokedex = () => {
           setGeneration(generation + 1)
         }
         setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
-       }}
+        setTimeout(()=>{
+          setSelectedRight(false)
+        },30)
+      }}
+      onMouseDown={()=>{setSelectedRight(true)}}
        >
         <div id="rightT"></div>
       </div>
@@ -596,20 +595,33 @@ const Pokedex = () => {
         <div id="midCircle"></div>
       </div>
       <div id="botcross"
+      className={selectedDown ? 'button-selected': null}
       onClick={()=>{
+        setSelectedDown(true)
         if(idPokemon != null){
           setIdPokemon(idPokemon + 1)
           setNickPokemon(allPokemons[idPokemon + 1].name)
+        }else{
+          setAlert(true)
         }
+        setTimeout(()=>{
+          setAlert(false)
+        },100)
+        setTimeout(()=>{
+          setSelectedDown(false)
+        },30)
       }}
+      onMouseDown={()=>{setSelectedDown(true)}}
+      
       >
         <div id="downT"></div>
       </div>
     </div>
   </div>
   <div id="right">
-    <div id="stats">
-      <ul >
+    
+    <div id="stats" >
+      <ul>
         {generation === 0 ? allPokemons.map((poke, key)=>{
           
           return(
@@ -765,13 +777,65 @@ const Pokedex = () => {
             
           )
         }) : null }
-
-
-
       </ul>
     </div>
-    <div id="miniButtonGlass4"></div>
-    <div id="miniButtonGlass5"></div>
+    <div className='geracoes'>
+      <div onClick={()=> {
+        setGeneration(0)
+        //nao exibir imagemn do pokemon
+        setDetailsPokemons('')
+
+        // nao exibir atributo
+        setOcultarAtributo(false)
+
+        //ocultar nick
+        setNickPokemon('')
+        setIdPokemon(null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
+        }}>
+        <button className={generation === 0 ? 'geracao-selected' : null}></button>
+        <p>All pokes</p>
+      </div>
+
+      <div onClick={changeGen1} >
+        <button className={generation === 1 ? 'geracao-selected' : null}></button>
+        <p>1°Geração</p>
+      </div>
+
+      <div onClick={changeGen2}>
+        <button className={generation === 2 ? 'geracao-selected' : null}></button>
+        <p>2°Geração</p>
+      </div>
+
+      <div onClick={changeGen3}>
+        <button className={generation === 3 ? 'geracao-selected' : null}></button>
+        <p>3°Geração</p>
+      </div>
+
+      <div onClick={changeGen4}>
+        <button className={generation === 4 ? 'geracao-selected' : null}></button>
+        <p>4°Geração</p>
+      </div>
+
+      <div onClick={changeGen5}>
+        <button className={generation === 5 ? 'geracao-selected' : null}></button>
+        <p>5°Geração</p>
+      </div>
+
+      <div onClick={changeGen6}>
+        <button className={generation === 6 ? 'geracao-selected' : null}></button>
+        <p>6°Geração</p>
+      </div>
+
+      <div onClick={changeGen7}>
+        <button className={generation === 7 ? 'geracao-selected' : null}></button>
+        <p>7°Geração</p>
+      </div>
+
+      <div onClick={changeGen8}>
+        <button className={generation === 8 ? 'geracao-selected' : null}></button>
+        <p>8°Geração</p>
+      </div>
+    </div>
     <div id="bg_curve1_right"></div>
     <div id="bg_curve2_right"></div>
     <div id="curve1_right"></div>
