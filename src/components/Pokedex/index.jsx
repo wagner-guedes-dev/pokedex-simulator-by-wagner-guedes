@@ -513,7 +513,7 @@ const Pokedex = (props) => {
         </div> : null}
         
 
-        {detailsPokemons === '' ? <h4 className={alert ? 'vibrate-1' : null}>Selecione um pokemon!</h4> : <img src={detailsPokemons} /> }
+        {detailsPokemons === '' ? <h4 className={alert ? 'vibrate-1' : null}>Selecione um pokemon!</h4> : <img className='animation-pokemon' src={detailsPokemons} /> }
         
         
         
@@ -578,7 +578,7 @@ const Pokedex = (props) => {
       setSelectedRight(true)
       alteraGeracao()
         if(props.generation === 8){
-          props.setGeneration(1)
+          props.setGeneration(0)
         }else{
           props.setGeneration(props.generation + 1)
         }

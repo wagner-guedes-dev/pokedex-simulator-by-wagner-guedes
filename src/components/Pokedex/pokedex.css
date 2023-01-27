@@ -887,7 +887,9 @@ h4{
 .geracao-selected{
 	background: radial-gradient(#b0fb7b, #50fb05);
 }
-
+.animation-pokemon{
+	animation: floating 3s ease-in-out infinite;
+}
 
 
 @-webkit-keyframes scale-up-top {
@@ -918,3 +920,9 @@ h4{
 			  transform-origin: 50% 0%;
 	}
   }
+
+  @keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 10px); }
+    100%   { transform: translate(0, -0px); }   
+}
