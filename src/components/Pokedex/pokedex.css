@@ -5,9 +5,10 @@
 	div#pokedex
 	{
 		width: 750px;
-		margin: 50px auto 0 auto;
+		
 		position: relative;
 		z-index: 2;
+		
 	}
 
 	div#left

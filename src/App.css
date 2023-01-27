@@ -4,6 +4,13 @@
     margin: 0;
     box-sizing: border-box;
 }
+.App{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
 .App img{
     position: fixed;
     height: 100%;
@@ -11,9 +18,6 @@
     top: 0;
     right: 0;
     z-index: 1;
-}
-@media(max-width: 1330px){
-    .App img{
-        object-fit: cover;
-    }
+    object-fit: cover;
+    transition: 1s;
 }

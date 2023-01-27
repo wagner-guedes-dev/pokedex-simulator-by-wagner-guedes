@@ -11,7 +11,7 @@ import { MdDarkMode } from 'react-icons/md'
 import { GiElectric, GiFairyWand, GiPunch,GiFluffyWing, GiHighGrass, GiGroundbreaker, GiIceBolt, GiPoisonGas, GiPsychicWaves, GiFallingRocks,GiSteelClaws } from 'react-icons/gi'
 
 
-const Pokedex = () => {
+const Pokedex = (props) => {
 
   const [allPokemons, setAllPokemons] = useState([])
   const [oneGeracion, setOneGeracion] = useState([])
@@ -232,7 +232,7 @@ const Pokedex = () => {
     }
 
     geracaoOne()
-    setGeneration(1)
+    props.setGeneration(1)
     setDetailsPokemons('')
 
     //nao exibir imagemn do pokemon
@@ -257,7 +257,7 @@ const Pokedex = () => {
   }
 }
         geracaoTwo()
-        setGeneration(2)
+        props.setGeneration(2)
         setDetailsPokemons('')
 
         //nao exibir imagemn do pokemon
@@ -283,7 +283,7 @@ const Pokedex = () => {
     }
     
       geracaoThree()
-        setGeneration(3)
+        props.setGeneration(3)
         setDetailsPokemons('')
 
         //nao exibir imagemn do pokemon
@@ -309,7 +309,7 @@ const Pokedex = () => {
         
       }
       geracaoFour()
-      setGeneration(4)
+      props.setGeneration(4)
       setDetailsPokemons('')
 
       //nao exibir imagemn do pokemon
@@ -335,7 +335,7 @@ const Pokedex = () => {
   
       }
       geracaoFive()
-        setGeneration(5)
+        props.setGeneration(5)
         setDetailsPokemons('')
 
         //nao exibir imagemn do pokemon
@@ -362,7 +362,7 @@ const Pokedex = () => {
   
       }
       geracaoSix()
-      setGeneration(6)
+      props.setGeneration(6)
       setDetailsPokemons('')
 
       //nao exibir imagemn do pokemon
@@ -388,7 +388,7 @@ const Pokedex = () => {
       }
 
       geracaoSeven()
-        setGeneration(7)
+        props.setGeneration(7)
         setDetailsPokemons('')
 
         //nao exibir imagemn do pokemon
@@ -411,7 +411,7 @@ const Pokedex = () => {
       }
   
       geracaoEight()
-        setGeneration(8)
+        props.setGeneration(8)
         setDetailsPokemons('')
 
         //nao exibir imagemn do pokemon
@@ -429,7 +429,7 @@ const Pokedex = () => {
   
   
   
-  const [generation, setGeneration] = useState(0) //0 == todos || 1 == 1°geracao  || 2 == 2°geracao || 3 == 3° geracao ....
+  
   const alteraGeracao = ()=>{
     
       changeGen1()
@@ -535,10 +535,10 @@ const Pokedex = () => {
         onClick={()=> {
           setSelectedLeft(true)
           alteraGeracao()
-          if(generation === 0){
-            setGeneration(8)
+          if(props.generation === 0){
+            props.setGeneration(8)
           }else{
-            setGeneration(generation - 1) 
+            props.setGeneration(props.generation - 1) 
           }
           setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
           setTimeout(()=>{
@@ -577,10 +577,10 @@ const Pokedex = () => {
      onClick={()=> {
       setSelectedRight(true)
       alteraGeracao()
-        if(generation === 8){
-          setGeneration(1)
+        if(props.generation === 8){
+          props.setGeneration(1)
         }else{
-          setGeneration(generation + 1)
+          props.setGeneration(props.generation + 1)
         }
         setIdPokemon( null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
         setTimeout(()=>{
@@ -622,7 +622,7 @@ const Pokedex = () => {
     
     <div id="stats" >
       <ul>
-        {generation === 0 ? allPokemons.map((poke, key)=>{
+        {props.generation === 0 ? allPokemons.map((poke, key)=>{
           
           return(
             <li 
@@ -642,7 +642,7 @@ const Pokedex = () => {
 
         
 
-        {generation === 1 ? oneGeracion.map((poke, key)=>{
+        {props.generation === 1 ? oneGeracion.map((poke, key)=>{
           return(
             <li
               className={idPokemon === key ? 'selected' : null}
@@ -659,7 +659,7 @@ const Pokedex = () => {
           )
         }) : null }
         
-        {generation === 2 ? twoGeracion.map((poke, key)=>{
+        {props.generation === 2 ? twoGeracion.map((poke, key)=>{
           return(
             <li
               className={idPokemon === key ? 'selected' : null}
@@ -676,7 +676,7 @@ const Pokedex = () => {
           )
         }) : null }
 
-        {generation === 3 ? threeGeracion.map((poke, key)=>{
+        {props.generation === 3 ? threeGeracion.map((poke, key)=>{
           return(
             <li 
               className={idPokemon === key ? 'selected' : null}
@@ -693,7 +693,7 @@ const Pokedex = () => {
           )
         }) : null }
 
-        {generation === 4 ? fourGeracion.map((poke, key)=>{
+        {props.generation === 4 ? fourGeracion.map((poke, key)=>{
           return(
             <li 
               className={idPokemon === key ? 'selected' : null}
@@ -710,7 +710,7 @@ const Pokedex = () => {
           )
         }) : null }
 
-        {generation === 5 ? fiveGeracion.map((poke, key)=>{
+        {props.generation === 5 ? fiveGeracion.map((poke, key)=>{
           return(
             <li 
               className={idPokemon === key ? 'selected' : null}
@@ -727,7 +727,7 @@ const Pokedex = () => {
           )
         }) : null }
 
-        {generation === 6 ? sixGeracion.map((poke, key)=>{
+        {props.generation === 6 ? sixGeracion.map((poke, key)=>{
           return(
             <li 
               className={idPokemon === key ? 'selected' : null}
@@ -744,7 +744,7 @@ const Pokedex = () => {
           )
         }) : null }
 
-        {generation === 7 ? sevenGeracion.map((poke, key)=>{
+        {props.generation === 7 ? sevenGeracion.map((poke, key)=>{
           return(
             <li
               className={idPokemon === key ? 'selected' : null}
@@ -761,7 +761,7 @@ const Pokedex = () => {
           )
         }) : null }
 
-        {generation === 8 ? eightGeracion.map((poke, key)=>{
+        {props.generation === 8 ? eightGeracion.map((poke, key)=>{
           return(
             <li
             className={idPokemon === key ? 'selected' : null}
@@ -781,7 +781,7 @@ const Pokedex = () => {
     </div>
     <div className='geracoes'>
       <div onClick={()=> {
-        setGeneration(0)
+        props.setGeneration(0)
         //nao exibir imagemn do pokemon
         setDetailsPokemons('')
 
@@ -792,47 +792,47 @@ const Pokedex = () => {
         setNickPokemon('')
         setIdPokemon(null) //para Deselecionar o pokemon ja clicado anteriormente evitando bug
         }}>
-        <button className={generation === 0 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 0 ? 'geracao-selected' : null}></button>
         <p>All pokes</p>
       </div>
 
       <div onClick={changeGen1} >
-        <button className={generation === 1 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 1 ? 'geracao-selected' : null}></button>
         <p>1°Geração</p>
       </div>
 
       <div onClick={changeGen2}>
-        <button className={generation === 2 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 2 ? 'geracao-selected' : null}></button>
         <p>2°Geração</p>
       </div>
 
       <div onClick={changeGen3}>
-        <button className={generation === 3 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 3 ? 'geracao-selected' : null}></button>
         <p>3°Geração</p>
       </div>
 
       <div onClick={changeGen4}>
-        <button className={generation === 4 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 4 ? 'geracao-selected' : null}></button>
         <p>4°Geração</p>
       </div>
 
       <div onClick={changeGen5}>
-        <button className={generation === 5 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 5 ? 'geracao-selected' : null}></button>
         <p>5°Geração</p>
       </div>
 
       <div onClick={changeGen6}>
-        <button className={generation === 6 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 6 ? 'geracao-selected' : null}></button>
         <p>6°Geração</p>
       </div>
 
       <div onClick={changeGen7}>
-        <button className={generation === 7 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 7 ? 'geracao-selected' : null}></button>
         <p>7°Geração</p>
       </div>
 
       <div onClick={changeGen8}>
-        <button className={generation === 8 ? 'geracao-selected' : null}></button>
+        <button className={props.generation === 8 ? 'geracao-selected' : null}></button>
         <p>8°Geração</p>
       </div>
     </div>
