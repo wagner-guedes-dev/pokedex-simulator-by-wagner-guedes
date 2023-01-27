@@ -9,16 +9,13 @@ function App() {
 
   const [generation, setGeneration] = useState(0) //0 == todos || 1 == 1°geracao  || 2 == 2°geracao || 3 == 3° geracao ....
   
-  useEffect(()=>{
-    imageAllPokemons
-    imagePrimeiraGeracao
-  },[])
+  
   
   return (
     <div className="App">
       <Pokedex className='pokedex' generation={generation} setGeneration={setGeneration}/>
-        {generation === 0 ? <img src={imageAllPokemons}/> : null}
-        {generation === 1 ? <img src={imagePrimeiraGeracao}/> : null}
+        <img src={imageAllPokemons} className={generation === 0 ? 'block' : null} />
+        <img src={imagePrimeiraGeracao} className={generation === 1 ? 'block' : null} />
     </div>
   )
 }
