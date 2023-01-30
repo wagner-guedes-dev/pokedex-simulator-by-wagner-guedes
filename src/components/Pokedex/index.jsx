@@ -11,6 +11,7 @@ import { MdDarkMode } from 'react-icons/md'
 import { GiElectric, GiFairyWand, GiPunch,GiFluffyWing, GiHighGrass, GiGroundbreaker, GiIceBolt, GiPoisonGas, GiPsychicWaves, GiFallingRocks,GiSteelClaws } from 'react-icons/gi'
 
 
+
 const Pokedex = (props) => {
 
   const [allPokemons, setAllPokemons] = useState([])
@@ -60,6 +61,7 @@ const Pokedex = (props) => {
     axios.get('https://pokeapi.co/api/v2/pokemon?limit=905offset=0')
     .then((res)=>{
       setAllPokemons(res.data.results)   
+      
     }).catch((err)=>{
       console.log(err)
     })
@@ -458,7 +460,6 @@ const Pokedex = (props) => {
 
   const [alert, setAlert] = useState(false)
 
-  
   
  
   return (
