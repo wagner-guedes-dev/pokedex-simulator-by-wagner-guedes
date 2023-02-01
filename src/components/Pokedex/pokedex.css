@@ -5,7 +5,7 @@
 	div#pokedex
 	{
 		width: 750px;
-		margin-top: 10%;
+		margin-top: 150px;
 		position: relative;
 		z-index: 2;
 		
@@ -711,6 +711,7 @@
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
+		min-width: 490px;
 	}
 	div#right, div#screen, div#bigbluebutton, div#barbutton1, div#barbutton2, div#cross
 	{
@@ -763,50 +764,7 @@
 		height: 300px;
 	}
 }
-@media(max-width: 490px){
-	div#pokedex
-	{	
-		margin-top: -30px;
-		min-width: 375px;
-	}
-	#bg_curve2_left{
-		background-color: transparent;
-	}
-	div#bg_curve2_left {
-		background-color: transparent;
-	}
-	#curve1_left,
-	#bg_curve1_left,
-	#curve2_left,
-	#bg_curve2_left,
-	#bg_curve2_right{
-		display: none;
-	}
-	div#cross{
-		z-index: 1000;
-	}
-	.background-buttons{
-		display: block;
-		width: 110px;
-		height: 110px;
-		background-color: #585858;
-		position: absolute;
-		top: 492px;
-		left: 259px;
-		border-radius: 100%;
-	}
-	.geracoes{
-		background-color: #8d8d8d;
-		border-radius: 10px;
-	}
-	div#screen:after
-	{
-		border-left:none;
-	}
-	div#stats{
-		width: 220px;
-	}
-}
+
 ul{
 	list-style: none;
 }
