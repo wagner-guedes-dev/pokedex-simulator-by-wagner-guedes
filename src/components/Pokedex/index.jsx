@@ -618,6 +618,7 @@ const Pokedex = (props) => {
         <div id="downT"></div>
       </div>
     </div>
+    <div className='background-buttons'></div>
   </div>
   <div id="right">
     
